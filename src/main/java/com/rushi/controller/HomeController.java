@@ -47,7 +47,7 @@ public class HomeController {
         public void setCourse(String course) { this.course = course; }
     }
 
-    @GetMapping("/register")
+    @GetMapping("/")
     public String showForm(Model model, HttpServletRequest request) {
         model.addAttribute("form", new RegistrationForm());
         model.addAttribute("courses", getCourses());

@@ -14,7 +14,7 @@
         <h2>Registration Successful!</h2>
          <p  class="success-message" th:text="'Thank you, ' + ${name} + ', for registering for the ' + ${course} + ' course.'"></p>
          <p  class="email-note" th:if="${emailSent}">A confirmation email has been sent to your registered email address.</p>
-            <a class="btn" th:href="@{/register}">Back to Home</a>
+            <a class="btn" th:href="@{/}">Back to Home</a>
             <div class="trainer-section">
                 <div class="trainer-logos">
                     <img th:src="@{/images/logo.png}" alt="Rushi Logo" class="logo-img" />
