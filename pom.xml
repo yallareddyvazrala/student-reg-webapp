@@ -12,17 +12,17 @@
 		<java.version>17</java.version>
                 <maven.compiler.source>17</maven.compiler.source>
                 <maven.compiler.target>17</maven.compiler.target>
-		<!-- Optional URL to server. Default value is http://localhost:9000 -->
-		<sonar.host.url>
-                  http://ec2-54-67-31-153.us-west-1.compute.amazonaws.com:9000/
-                </sonar.host.url>
-		<sonar.token>
-                  sqa_98ddabfd7c9ea9af1133e21ab5d929664dc0708d
-                </sonar.token>
+        		<!-- SonarQube Properties -->
+		<!-- 
+		<sonar.host.url>http://14.54.67.78:9000/</sonar.host.url>
+		<sonar.token>sqa_98ddabfd7c9ea9af1133e21ab5d929664dc0708d</sonar.token>
+		-->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- SonarQube Properties -->
-		<!-- <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths> -->
-		<!-- <sonar.sources>src/main/java</sonar.sources><sonar.tests>src/test/java</sonar.tests><sonar.java.binaries>target/classes</sonar.java.binaries> -->
+		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.sources>src/main/java</sonar.sources>
+		<sonar.tests>src/test/java</sonar.tests>
+		<sonar.java.binaries>target/classes</sonar.java.binaries>
+		<sonar.exclusions>**/*.css</sonar.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
