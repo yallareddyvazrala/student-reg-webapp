@@ -16,7 +16,6 @@
 		<sonar.host.url>http://13.57.24.74:9000/</sonar.host.url>
 		<sonar.token>sqa_a20aa98db9ee7de5db4875250f4536996c3d49c1</sonar.token>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- SonarQube Properties -->
 		<sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
 		<sonar.sources>src/main/java</sonar.sources>
 		<!-- <sonar.tests>src/test/java</sonar.tests> -->
