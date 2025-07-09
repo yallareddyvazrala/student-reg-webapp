@@ -6,7 +6,6 @@ node {
     def recipients = "dev-team@example.com"
     def mavenToolName = "Maven-3.9.10"
     def mavenHome = tool name: mavenToolName, type: 'maven'
-    def buildStatus = "SUCCESS"
     try {
 
         stage("Git Clone") {
