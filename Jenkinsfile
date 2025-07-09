@@ -25,7 +25,8 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-                 checkout scm
+                 checkout scm // This will use the SCM configured in the Jenkins job And Webhooks will only with this option.
+                // Webhooks will not trigger with below option.
                 //git branch: 'development', changelog: false, credentialsId: 'GitHubCred', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'
             }
         }
