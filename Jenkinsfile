@@ -9,7 +9,7 @@ node {
     try {
 
         stage("Git Clone") {
-            git branch: 'development', changelog: false, credentialsId: 'GitHubCred', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'
+            git branch: 'development', changelog: true, credentialsId: 'GitHubCred', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'
         }
 
         stage("Build WAR") {
