@@ -47,7 +47,7 @@ node {
     } finally {
         def buildStatus = currentBuild.result ?: 'SUCCESS'
         sendEmail(buildStatus, recipients)
-        notifyBuild(buildStatus)
+        slackNotification(buildStatus)
     }
 }
 
