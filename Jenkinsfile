@@ -23,13 +23,13 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        stage('Git Clone') {
+       /* stage('Git Clone') {
             steps {
-                 checkout scm // This will use the SCM configured in the Jenkins job And Webhooks will only with this option.
+                 //checkout scm // This will use the SCM configured in the Jenkins job And Webhooks will only with this option.
                 // Webhooks will not trigger with below option.
                 //git branch: 'development', changelog: false, credentialsId: 'GitHubCred', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'
             }
-        }
+        } */ 
 
         stage('Build and Test') {
             steps {
