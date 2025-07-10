@@ -3,7 +3,7 @@ node {
    def mavenHome = tool name: 'Maven-3.9.10', type: 'maven'
    
    try {
-
+    
         stage("Git Clone") {
             git branch: 'development', credentialsId: 'GitHubCred', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'
         }
@@ -47,12 +47,13 @@ node {
         currentBuild.result = 'FAILURE'
     } finally {
         def buildStatus = currentBuild.result ?: 'SUCCESS'
+        def colorcode = buildStatus == 'SUCCESS' ? 'good' : 'danger'
+        slackSend (channel: 'lic-appteam', color: "${colorcode}", message: 'Build - ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}')
         sendEmail(
            "${env.JOB_NAME} - ${env.BUILD_NUMBER} - Build ${buildStatus}",
            "Build ${buildStatus}. Please check the console output at ${env.BUILD_URL}",
            'balajireddy.urs@gmail.com' )
     }
-
  
 }
 
