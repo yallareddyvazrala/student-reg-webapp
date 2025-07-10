@@ -2,6 +2,10 @@ node {
    
    def mavenHome = tool name: 'Maven-3.9.10', type: 'maven'
    
+
+    options {
+        buildDiscarder (numToKeepStr: '5')
+    }
    stage("Git Clone") {
       git branch: 'development', credentialsId: 'GitHubCred', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'
    }
