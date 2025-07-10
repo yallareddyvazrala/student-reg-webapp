@@ -6,11 +6,12 @@ node {
       git branch: 'development', credentialsId: 'GitHubCred', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'
    }
    
-   stage("Maven Build") {
-     sh "${mavenHome}/bin/mvn clean verify sonar:sonar"
+   stage("Maven Verify And Sonar Scan") {
+      sh "${mavenHome}/bin/mvn clean package"
+      sh "${mavenHome}/bin/mvn clean verify sonar:sonar"
    }
    
-    stage("Maven Build") {
+    stage("Maven Deploy") {
        sh "${mavenHome}/bin/mvn clean deploy"
    }
    
