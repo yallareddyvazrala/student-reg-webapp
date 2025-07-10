@@ -48,7 +48,7 @@ node {
     } finally {
         def buildStatus = currentBuild.result ?: 'SUCCESS'
         def colorcode = buildStatus == 'SUCCESS' ? 'good' : 'danger'
-        slackSend (channel: 'lic-appteam', color: "${colorcode}", message: "Build - ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER}")
+        slackSend (channel: 'lic-appteam', color: "${colorcode}", message: "Build - ${buildStatus} : ${env.JOB_NAME} #${env.BUILD_NUMBER} - URL: ${env.BUILD_URL}")
         sendEmail(
            "${env.JOB_NAME} - ${env.BUILD_NUMBER} - Build ${buildStatus}",
            "Build ${buildStatus}. Please check the console output at ${env.BUILD_URL}",
