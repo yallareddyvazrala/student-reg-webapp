@@ -23,14 +23,8 @@ pipeline {
     }
 
     stages {
-    
-       stage("Clean WS"){
-           steps{
-              cleanWs()
-           }
-       }    
 
-       
+
        stage("Maven Clean Package"){
            steps {
                sh "mvn clean package"
@@ -82,6 +76,9 @@ pipeline {
    }
    
    post {
+        always {
+            cleanWs()
+        }
         success {
         slackSend (channel: 'lic-appteam', color: "good", message: "Build - SUCCESS : ${env.JOB_NAME} #${env.BUILD_NUMBER} - URL: ${env.BUILD_URL}")
           sendEmail(
