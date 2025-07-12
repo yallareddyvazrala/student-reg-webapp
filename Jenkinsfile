@@ -29,12 +29,7 @@ pipeline {
               cleanWs()
            }
        }    
-        
-       stage('GitClone') {
-          steps {
-             git branch: 'development', credentialsId: 'GitCrednetails', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'
-          }
-       }
+
        
        stage("Maven Clean Package"){
            steps {
