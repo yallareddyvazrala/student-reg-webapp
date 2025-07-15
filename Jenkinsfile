@@ -44,10 +44,11 @@ pipeline {
       }
       
        stage("Deployt To Dev Server") {
+          when {
+            branch: 'development'
+        }    
         steps{
-            when {
-                branch: 'development'
-            }    
+    
             sshagent(['Tomcat_Server']) {
                 sh """
                      ssh -o  StrictHostKeyChecking=no ec2-user@${TOMCAT_SERVER_IP} sudo systemctl stop tomcat"
