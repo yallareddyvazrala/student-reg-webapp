@@ -65,7 +65,7 @@ pipeline {
         }
       }
       
-    stage("Deployt To Dev Server") {
+    stage("Deploy login feature changes to Dev Server") {
         when {
             expression {
                 return env.BRANCH_NAME == 'feature-login'
