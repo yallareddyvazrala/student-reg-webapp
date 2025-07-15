@@ -43,36 +43,26 @@ pipeline {
           }
       }
       
-       stage("Stop Tomcat Server") {
+       stage("Deployt To Dev Server") {
         steps{
+            when {
+                branch: 'development'
+            }    
             sshagent(['Tomcat_Server']) {
                 sh """
                      ssh -o  StrictHostKeyChecking=no ec2-user@${TOMCAT_SERVER_IP} sudo systemctl stop tomcat"
                      echo Stoping the Tomcat Process"
                      sleep 30
-                   """
-            }
-        }
-      }
-      
-      stage("COPY War file to Tomcat") {
-        steps{
-            sshagent(['Tomcat_Server']) {
-                sh "scp -o  StrictHostKeyChecking=no target/student-reg-webapp.war ec2-user@${TOMCAT_SERVER_IP}:/opt/tomcat/webapps/student-reg-webapp.war"
-            }
-        }
-      }
-      
-      stage("Start Tomcat Server") {
-        steps{
-            sshagent(['Tomcat_Server']) {
-                sh """
+                     scp -o  StrictHostKeyChecking=no target/student-reg-webapp.war ec2-user@${TOMCAT_SERVER_IP}:/opt/tomcat/webapps/student-reg-webapp.war
+                     echo Copying the War file to Tomcat Server"
                      ssh -o  StrictHostKeyChecking=no ec2-user@${TOMCAT_SERVER_IP} sudo systemctl start tomcat"
                      echo Strating the Tomcat process"
                    """
             }
         }
-      } 
+      }
+      
+       
    }
    
    post {
