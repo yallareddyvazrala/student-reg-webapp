@@ -1,3 +1,4 @@
+@Library('rushitech-shared-library') _
 pipeline {
     
     agent any
@@ -27,7 +28,7 @@ pipeline {
 
        stage("Maven Clean Package"){
            steps {
-               sh "mvn clean package"
+              mavenBuild
            }
        }
        
@@ -109,26 +110,20 @@ pipeline {
         }
         success {
         slackSend (channel: 'lic-appteam', color: "good", message: "Build - SUCCESS : ${env.JOB_NAME} #${env.BUILD_NUMBER} - URL: ${env.BUILD_URL}")
-          sendEmail(
-           "${env.JOB_NAME} - ${env.BUILD_NUMBER} - Build SUCCESS",
+          
+        sendEmailNotifications("${env.JOB_NAME} - ${env.BUILD_NUMBER} - Build SUCCESS",
            "Build SUCCESS. Please check the console output at ${env.BUILD_URL}",
            'balajireddy.urs@gmail.com' )
+        
         }
         failure {
          slackSend (channel: 'lic-appteam', color: "danger", message: "Build - FAILED : ${env.JOB_NAME} #${env.BUILD_NUMBER} - URL: ${env.BUILD_URL}")    
-         sendEmail(
-           "${env.JOB_NAME} - ${env.BUILD_NUMBER} - Build FAILED",
+        
+         sendEmailNotifications( "${env.JOB_NAME} - ${env.BUILD_NUMBER} - Build FAILED",
            "Build FAILED. Please check the console output at ${env.BUILD_URL}",
            'balajireddy.urs@gmail.com' )
         }
     }
 }
 
-def sendEmail(String subject, String body, String recipient) {
-    emailext(
-        subject: subject,
-        body: body,
-        to: recipient,
-        mimeType: 'text/html'
-    )
-}
+
