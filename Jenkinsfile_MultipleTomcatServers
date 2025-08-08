@@ -1,29 +1,36 @@
 pipeline {
+    
     agent any
+    
     options {
       buildDiscarder logRotator(numToKeepStr: '5')
       timeout(time: 10, unit: 'MINUTES')
       disableConcurrentBuilds()
     }
+    
     parameters {
         string(name: 'TOMCAT_SERVER_IPS', defaultValue: '172.31.34.242,172.31.44.50', description: 'Comma-separated list of Tomcat server IPs')
     }
+    
     tools {
         maven 'Maven-3.9.10'
     }
 
     stages {
-
+        
         stage("Git Clone"){
            steps {
               git branch: 'development', credentialsId: 'GitHubCred', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'	
            }
        }
+       
        stage("Maven Clean Package"){
            steps {
                sh "mvn clean package"
            }
        }
+       
+       /*
         stage("Deploy To Dev Servers") {
             steps {
                 //This is groovy script scripted way of for loop.
@@ -45,11 +52,11 @@ pipeline {
                     }
                 }
             }
-        }
-
+        }*/
+        
         /* Executing a shell script to deploy war file in tomcat servers by executing shell sccript
            with list of tomcat ipdress as , separated values */
-         /*
+        
              stage("Deploy To Dev Servers") {
                 steps {
                     sshagent(['Tomcat_Server']) {
@@ -60,9 +67,7 @@ pipeline {
                     }
                 }
             }
-        */
-
+            
    }
   
 }
-
