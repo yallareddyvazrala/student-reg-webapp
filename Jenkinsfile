@@ -3,10 +3,7 @@ node {
         def maven_home = tool name: 'Maven-3.9.12', type: 'maven'
         def tomcatServerIP="172.31.11.157"
         def tomcatServerSSHUsername="ec2-user"
-        stage("Git Clone") {
-            git branch: 'development', credentialsId: 'GitHub_Credentails', url: 'https://github.com/Rushi-Technologies/student-reg-webapp.git'
-        }
-        
+       
         stage("Maven Pacakge"){
             sh "echo ${maven_home}"
             sh "${maven_home}/bin/mvn clean package"
