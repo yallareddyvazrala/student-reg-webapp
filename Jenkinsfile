@@ -40,7 +40,12 @@ pipeline {
             }
         }
 
-        stage('Deploy to Tomcat') {
+    
+        stage('Deploy to Dev') {
+
+            when {
+                expression { env.BRANCH_NAME == "development" || env.BRANCH_NAME == "feature"}
+            } 
             environment {
                  TOMCAT_SERVER_IP = "172.31.11.157"
             }
@@ -52,6 +57,18 @@ pipeline {
                     sh "scp -o StrictHostKeyChecking=no target/student-reg-webapp.war ec2-user@${TOMCAT_SERVER_IP}:/opt/tomcat/webapps/student-reg-webapp.war"
                     sh "ssh -o StrictHostKeyChecking=no ec2-user@${TOMCAT_SERVER_IP} sudo systemctl start tomcat"
                 }
+            }
+       }
+
+       stage('Deploy to Prod') {
+
+            when {
+                branch 'main'
+            } 
+           
+            steps {
+                // Commands to Deploy Prod
+                sh "Deployoing Prod"
             }
        }
    }
