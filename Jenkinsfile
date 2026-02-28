@@ -44,7 +44,7 @@ pipeline {
         stage('Deploy to Dev') {
 
             when {
-                expression { env.BRANCH_NAME == "development" || env.BRANCH_NAME == "feature"}
+                expression { env.BRANCH_NAME == "development" }
             } 
             environment {
                  TOMCAT_SERVER_IP = "172.31.11.157"
